@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setCurrency} from "./store/slice/defaultExchangeSlice";
+import { setCurrency } from "./store/slice/defaultExchangeSlice";
 import { setCurrencies } from "@/store/slice/currenciesSlice";
 import { Label } from "@/components/ui/label";
 
@@ -27,7 +27,7 @@ function CurrencyPicker() {
     )
       .then((res) => res.json())
       .then((data) => dispatch(setCurrencies(data)))
-      .catch((err) => console.log(err));
+      .catch((err) => console.info(err));
   }, [dispatch]);
 
   return <SelectCurrency currencies={currencies} />;

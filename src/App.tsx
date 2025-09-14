@@ -1,6 +1,7 @@
 import CurrencyPicker from "./CurrencyPicker";
 import CalendarPicker from "./CalendarPicker";
 import ExchangePicker from "./ExchangePicker";
+import TableExchange from "./Table";
 
 function App() {
   
@@ -18,6 +19,9 @@ function App() {
           </div>
           <div className=" mt-4 border-t p-5">
             <ExchangePicker />
+          </div>
+          <div>
+            <TableExchange />
           </div>
         </div>
       </div>
