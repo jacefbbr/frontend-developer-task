@@ -1,0 +1,1 @@
+export type Tdata = Record<string, string>;
