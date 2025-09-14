@@ -1,8 +1,9 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
 
-import { useSelector } from "react-redux";
-import type { RootState } from "./store/store";
+import type { RootState, AppDispatch } from "./store/store";
+import { useSelector, useDispatch } from "react-redux";
+import { setExchange } from "@/store/slice/exchangeSlice";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -30,7 +31,10 @@ function ExchangePicker() {
 
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string[]>(DEFAULTS);
-
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    dispatch(setExchange(selected));
+  }, [selected, dispatch]);
   const MIN = 3;
   const MAX = 7;
 

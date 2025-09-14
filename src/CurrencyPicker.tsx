@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setCurrency} from "./store/slice/defaultExchangeSlice";
 import { setCurrencies } from "@/store/slice/currenciesSlice";
-import { useSelector } from "react-redux";
 import { Label } from "@/components/ui/label";
 
 import {
@@ -30,16 +30,21 @@ function CurrencyPicker() {
       .catch((err) => console.log(err));
   }, [dispatch]);
 
-  return <SelectCurrency currencies={currencies} />
+  return <SelectCurrency currencies={currencies} />;
 }
 
 function SelectCurrency({ currencies }: { currencies: Tdata }) {
+  const dispatch = useDispatch<AppDispatch>();
+  const onSelect = (value: string) => {
+    dispatch(setCurrency(value));
+  };
+
   return (
     <div className="flex flex-row gap-3 justify-center items-center">
       <Label htmlFor="date" className="px-1">
         Select currency
       </Label>
-      <Select defaultValue="gbp">
+      <Select defaultValue="gbp" onValueChange={onSelect}>
         <SelectTrigger className="w-[200px]">
           <SelectValue placeholder="Select default currency" />
         </SelectTrigger>
