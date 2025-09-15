@@ -20,7 +20,7 @@ export function TableExchange() {
 
   const [exchangeRates, setExchangeRates] = useState<{ code: string; rate: number }[]>([]);
   const [loading, setLoading] = useState(false);
-
+console.log(exchangeRates)
   useEffect(() => {
     setLoading(true);
     fetch(
@@ -39,10 +39,12 @@ export function TableExchange() {
           setExchangeRates(rates);
         } else {
           console.info("Currency is undefined");
+          setExchangeRates([]);
         }
         setLoading(false);
       })
       .catch((err) => {
+        setExchangeRates([]);
         console.info(err);
         setLoading(false);
       });
@@ -68,7 +70,7 @@ export function TableExchange() {
           exchangeRates.length === 0 ? (
             <TableRow>
               <TableCell colSpan={2} className="px-5 text-center py-4">
-                No exchange rates available.
+                No exchange rates available at this moment.
               </TableCell>
             </TableRow>
           ) : (
