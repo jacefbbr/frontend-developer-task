@@ -65,13 +65,21 @@ export function TableExchange() {
             </TableCell>
           </TableRow>
         ) : (
+          exchangeRates.length === 0 ? (
+            <TableRow>
+              <TableCell colSpan={2} className="px-5 text-center py-4">
+                No exchange rates available.
+              </TableCell>
+            </TableRow>
+          ) : (
+
           exchangeRates.map(({ code, rate }) => (
             <TableRow key={code} className="border-t h-10">
               <TableCell className="px-5">{code.toUpperCase()}</TableCell>
               <TableCell className="px-5">1 {defaultExchange.currency?.toUpperCase() ?? "N/A"} ={" "}{rate.toFixed(4)} {code.toUpperCase()}</TableCell>
             </TableRow>
           ))
-        )}
+        ))}
       </TableBody>
     </Table>
   );
