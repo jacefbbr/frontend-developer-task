@@ -20,7 +20,7 @@ export function TableExchange() {
 
   const [exchangeRates, setExchangeRates] = useState<{ code: string; rate: number }[]>([]);
   const [loading, setLoading] = useState(false);
-console.log(exchangeRates)
+  
   useEffect(() => {
     setLoading(true);
     fetch(
